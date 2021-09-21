@@ -1,5 +1,6 @@
 package ru.netology.demo.service;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.netology.demo.dao.Person;
 import ru.netology.demo.repository.Repository;
 
@@ -16,7 +17,12 @@ public class Service {
         return repository.getPersonsByCity(city);
     }
 
-    public List<Person> savePersons() {
-        return repository.savePersons();
+    public List<Person> getPersonsByAge(Integer age) {
+        return repository.getPersonsByAge(age);
+    }
+
+    public Person getPersonByNameAndSurname(String name, String surname) {
+        return repository.getPersonByNameAndSurname(name, surname)
+                .orElseThrow(() -> new RuntimeException("no person found"));
     }
 }

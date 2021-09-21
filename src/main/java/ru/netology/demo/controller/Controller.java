@@ -19,9 +19,14 @@ public class Controller {
         return service.getPersonsByCity(city);
     }
 
-    @GetMapping("/persons")
-    public List<Person> setPersonsTable() {
-        return service.savePersons();
+    @GetMapping("/persons/by-age")
+    public List<Person> getPersonsByCity(@RequestParam("age") Integer age) {
+        return service.getPersonsByAge(age);
+    }
+
+    @GetMapping("/persons/by-name-surname")
+    public Person getPersonByNameAndSurname(@RequestParam("name") String name, @RequestParam("surname") String surname) {
+        return service.getPersonByNameAndSurname(name, surname);
     }
 
 }

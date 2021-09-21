@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -21,6 +18,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 @Entity
+@IdClass(PersonId.class)
 @Table(schema = "netology", name = "persons")
 public class Person implements Serializable {
     @Id
@@ -40,13 +38,13 @@ public class Person implements Serializable {
     @Min(0)
     @Max(100)
     @Cascade(value = CascadeType.MERGE)
-    private int age;
+    private Integer age;
 
-    @Column(nullable = false, unique = true)
-    private String phone_number;
+    @Column(name = "phone_number", nullable = false, unique = true)
+    private String phoneNumber;
 
-    @Column(nullable = false)
+    @Column(name = "city_of_living", nullable = false)
     @Size(max = 100)
-    private String city_of_living;
+    private String cityOfLiving;
 
 }
