@@ -29,12 +29,12 @@ public class Repository {
 
     @Transactional
     public List<Person> getPersonsByCity(String city) {
-        return personRepository.findByCityOfLiving(city);
+        return personRepository.findByCity(city);
     }
 
     @Transactional
     public List<Person> getPersonsByAge(Integer age) {
-        return personRepository.findByAgeLessThanOrderByAge(age);
+        return personRepository.findByAge(age);
     }
 
     @Transactional
