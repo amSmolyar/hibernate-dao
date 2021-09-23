@@ -7,10 +7,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
-    private static final int RUNTIME_EXCEPTION_ID = 10;
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handlerE(Exception e) {
+        String resp = e.getMessage();
+        return new ResponseEntity<>(resp, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> handlerCardNotFound(RuntimeException e) {
+    public ResponseEntity<String> handlerRE(RuntimeException e) {
         String resp = e.getMessage();
         return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
     }

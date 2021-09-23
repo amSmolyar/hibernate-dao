@@ -1,5 +1,7 @@
 package ru.netology.demo.controller;
 
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ru.netology.demo.dao.Person;
 import ru.netology.demo.service.Service;
@@ -26,6 +28,7 @@ public class Controller {
 
     @GetMapping("/persons/by-name-surname")
     public Person getPersonByNameAndSurname(@RequestParam("name") String name, @RequestParam("surname") String surname) {
+        System.out.println("User " + SecurityContextHolder.getContext().getAuthentication().getName() + " works with table");
         return service.getPersonByNameAndSurname(name, surname);
     }
 
