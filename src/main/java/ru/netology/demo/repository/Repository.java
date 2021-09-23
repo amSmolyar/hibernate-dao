@@ -25,7 +25,7 @@ public class Repository {
 
     @Transactional
     public List<Person> getPersonsByCity(String city) {
-        var query = entityManager.createQuery("select p from Person p where p.city_of_living = :city_of_living", Person.class);
+        var query = entityManager.createQuery("select p from Person p where p.cityOfLiving = :city_of_living", Person.class);
         query.setParameter("city_of_living", city);
         List<Person> list = query.getResultList();
         return list;
@@ -45,8 +45,8 @@ public class Repository {
                             .name(names.get(random.nextInt(names.size())))
                             .surname(surnames.get(random.nextInt(surnames.size())))
                             .age(random.nextInt(100))
-                            .city_of_living(cities.get(random.nextInt(cities.size())))
-                            .phone_number("+79" + random.nextInt(999999999))
+                            .cityOfLiving(cities.get(random.nextInt(cities.size())))
+                            .phoneNumber("+79" + random.nextInt(999999999))
                             .build();
 
                     this.entityManager.persist(person);
