@@ -1,9 +1,6 @@
 package ru.netology.demo.dao;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -17,23 +14,25 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@ToString
 @Entity
-@IdClass(PersonId.class)
 @Table(schema = "netology", name = "persons")
 public class Person implements Serializable {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @Column(nullable = false)
     @Size(max = 100)
     @Cascade(value = CascadeType.MERGE)
     private String name;
 
-    @Id
     @Column(nullable = false)
     @Size(max = 100)
     @Cascade(value = CascadeType.MERGE)
     private String surname;
 
-    @Id
     @Column(nullable = false)
     @Min(0)
     @Max(100)

@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Service {
     private Repository repository;
+    private static int cntInitTableRequest = 0;
 
     public Service(Repository repository) {
         this.repository = repository;
@@ -16,7 +17,12 @@ public class Service {
         return repository.getPersonsByCity(city);
     }
 
-    public List<Person> savePersons() {
-        return repository.savePersons();
+    public List<Person> getPersons() {
+        cntInitTableRequest++;
+        if (cntInitTableRequest > 1) {
+            return repository.getPersons();
+        } else {
+            return repository.savePersons();
+        }
     }
 }

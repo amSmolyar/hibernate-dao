@@ -20,8 +20,8 @@ public class Controller {
     }
 
     @GetMapping("/persons")
-    public List<Person> setPersonsTable() {
-        return service.savePersons();
+    public List<Person> getPersonsTable() {
+        return service.getPersons();
     }
 
 }
